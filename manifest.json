@@ -13,7 +13,9 @@
     {
       "matches" : [
         "http://search.digikey.com/us/en/*",
-        "https://search.digikey.com/us/en/*"
+        "https://search.digikey.com/us/en/*",
+        "http://www.mouser.com/ProductDetail/*",
+        "http://www.newark.com/*"
       ],
       "js" : ["contentscript.js"],
       "run_at" : "document_end",
