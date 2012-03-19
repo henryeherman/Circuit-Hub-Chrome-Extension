@@ -8,7 +8,8 @@ console.log('Circuit Hub Extentsion Being Called');
 var digikey_str = /digikey/
 var mouser_str = /mouser/
 var newark_str = /newark/
-
+var circuithub_search = 'https://circuithub.com/parts/search?mpn='
+var circuithub_img = '<img src="'+chrome.extension.getURL("logo-19.png")+'" alt="Circuithub" />'
 
 console.log('URL::'+document.URL);
 if (digikey_str.test(document.URL))
@@ -23,10 +24,10 @@ if (digikey_str.test(document.URL))
       var partInfos = partCell.parentElement.parentElement.getElementsByTagName('th');
       for(var i=0; i<partInfos.length;i++){
         if (partInfos[i].innerText == 'Manufacturer Part Number') {	 
-            var cell = partInfos[i].parentElement.getElementsByTagName('td')[0];		
+            var cell = partInfos[i].parentElement.getElementsByTagName('td')[0];
             var partid = cell.innerText
             console.log('Found part#'+partid);
-            var newcell = '<a href="https://circuithub.com/parts/search?mpn='+partid+'">'+partid+'</a>';
+            var newcell = '<a href="'+ circuithub_search+partid+'">'+partid+circuithub_img+'</a>';
             cell.innerHTML = newcell;
         }
       } 
@@ -40,7 +41,7 @@ if (digikey_str.test(document.URL))
             if(partInfos[i].getAttribute('itemprop')=='ProductID') {                   
                var partid=partInfos[i].innerText;
                console.log('Found part#'+partid);
-               partInfos[i].innerHTML= '<a href="https://circuithub.com/parts/search?mpn='+partid+'">'+partInfos[i].innerHTML+'</a>';
+               partInfos[i].innerHTML= '<a href="'+circuithub_search+partid+'">'+partInfos[i].innerHTML+circuithub_img+'</a>';
             }
         }
     }
@@ -50,5 +51,5 @@ if (digikey_str.test(document.URL))
     cell = partInfos.children[partInfos.children.length-1]
     var partid=cell.innerText;
     console.log('Found part#'+partid);
-    cell.innerHTML='<a href="https://circuithub.com/parts/search?mpn='+partid+'">'+cell.innerHTML+'</a>';
+    cell.innerHTML='<a href='+circuithub_search+partid+'">'+cell.innerHTML+circuithub_img+'</a>';
 }
