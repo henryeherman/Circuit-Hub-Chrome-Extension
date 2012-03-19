@@ -26,7 +26,7 @@ if (digikey_str.test(document.URL))
             var cell = partInfos[i].parentElement.getElementsByTagName('td')[0];		
             var partid = cell.innerText
             console.log('Found part#'+partid);
-            var newcell = '<a href="https://circuithub.com/parts/search?q='+partid+'">'+partid+'</a>';
+            var newcell = '<a href="https://circuithub.com/parts/search?mpn='+partid+'">'+partid+'</a>';
             cell.innerHTML = newcell;
         }
       } 
@@ -40,7 +40,7 @@ if (digikey_str.test(document.URL))
             if(partInfos[i].getAttribute('itemprop')=='ProductID') {                   
                var partid=partInfos[i].innerText;
                console.log('Found part#'+partid);
-               partInfos[i].innerHTML= '<a href="https://circuithub.com/parts/search?q='+partid+'">'+partInfos[i].innerHTML+'</a>';
+               partInfos[i].innerHTML= '<a href="https://circuithub.com/parts/search?mpn='+partid+'">'+partInfos[i].innerHTML+'</a>';
             }
         }
     }
@@ -50,5 +50,5 @@ if (digikey_str.test(document.URL))
     cell = partInfos.children[partInfos.children.length-1]
     var partid=cell.innerText;
     console.log('Found part#'+partid);
-    cell.innerHTML='<a href="https://circuithub.com/parts/search?q='+partid+'">'+cell.innerHTML+'</a>';
+    cell.innerHTML='<a href="https://circuithub.com/parts/search?mpn='+partid+'">'+cell.innerHTML+'</a>';
 }
